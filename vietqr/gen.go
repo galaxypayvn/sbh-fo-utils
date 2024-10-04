@@ -1,6 +1,7 @@
 package qr
 
 import (
+	"code.finan.cc/finan-one-be/fo-utils/valid"
 	"fmt"
 )
 
@@ -40,6 +41,33 @@ type ConsumerAccountInfomation struct {
 	AID        string `json:"aid"` //NAPAS:A000000727
 	ConsumerID string `json:"consumer_id"`
 	ServiceID  string `json:"service_id"` //QRIBFTTC: ck-> the ,QRIBFTTA: ck->tk
+}
+
+func GenerateQR(
+	binCode string,
+	accountNumber, dataField *string,
+	amount *int64) QRInput {
+	var input = QRInput{
+		PayloadFormatIndicator: "000201",
+		PointOfInitiationMethod: func() string {
+			if nil != amount && *amount == 0 {
+				return "010211"
+			}
+			return "010212"
+		}(),
+		ConsumerAccountInfomation: ConsumerAccountInfomation{
+			BankCode:   binCode,
+			ConsumerID: valid.String(accountNumber),
+			AID:        "A000000727",
+			ServiceID:  "QRIBFTTA",
+		},
+		TypeAddition:                "08",
+		CurrentCode:                 "VND",
+		CountryCode:                 "VN",
+		TransactionAmount:           amount,
+		AdditionalDataFieldTemplate: dataField,
+	}
+	return input
 }
 
 func (s QRInput) String() string {
