@@ -34,11 +34,13 @@ func GetAuthInfoFromToken(req *http.Request) (res *valueobject.Auth, err error) 
 		return nil, err
 	}
 
+	res.UserID, err = GetUserIDFromHeader(req)
+	if err != nil {
+		return nil, err
+	}
+
 	if req.Header.Get("x-only-user") == "only" {
-		res.UserID, err = GetUserIDFromHeader(req)
-		if err != nil {
-			return nil, err
-		}
+		res.IsOnly = true
 	}
 
 	res.RequestID, err = GetRequestIDFromHeader(req)

@@ -10,4 +10,5 @@ type Auth struct {
 	Locale     string    `json:"locale"`
 	Timezone   string    `json:"timezone"`
 	BranchID   uuid.UUID `json:"branch_id"`
+	IsOnly     bool      `json:"is_only"`
 }
