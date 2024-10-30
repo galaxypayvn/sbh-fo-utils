@@ -4,8 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/redis/go-redis/v9"
+	"github.com/sony/gobreaker"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -22,15 +25,38 @@ func (r *repositoryImpl) resolveKey(key string) string {
 }
 
 // Get ...
+var mu sync.Mutex
+var breaker = gobreaker.NewCircuitBreaker(gobreaker.Settings{
+	Name:    "RedisGet",
+	Timeout: 30 * time.Second,
+})
+
 func (r *repositoryImpl) Get(ctx context.Context, key string) (interface{}, error) {
-	rs, err := r.client.Get(ctx, r.resolveKey(key)).Result()
-	if err == redis.Nil {
-		return nil, errors.New("key not found: " + key)
+	var err error
+	retries := 3
+
+	for i := 0; i < retries; i++ {
+		// Execute Redis Get inside the circuit breaker
+		result, err := breaker.Execute(func() (interface{}, error) {
+			mu.Lock() // Protect the map or client if needed
+			defer mu.Unlock()
+			return r.client.Get(ctx, r.resolveKey(key)).Result()
+		})
+
+		if err == nil {
+			return result, nil
+		}
+
+		// Check for specific Redis "key not found" error
+		if errors.Is(err, redis.Nil) {
+			return nil, errors.New("key not found: " + key)
+		}
+
+		// If circuit is open or there's another error, apply exponential backoff
+		time.Sleep(time.Duration(i*i) * 100 * time.Millisecond) // Exponential backoff
 	}
-	if err != nil {
-		return nil, err
-	}
-	return rs, nil
+
+	return nil, fmt.Errorf("failed to get key %s after %d retries: %w", key, retries, err)
 }
 
 // GetList returns the list of data in cache, list key not found and error

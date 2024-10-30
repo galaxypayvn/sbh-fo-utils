@@ -24,9 +24,12 @@ type RedisRepo struct {
 
 func NewRedisRepo(cfg Config) IRedisRepo {
 	client := redis.NewClient(&redis.Options{
-		Addr:     cfg.Address,
-		Password: cfg.Password,
-		DB:       cfg.DB,
+		Addr:         cfg.Address,
+		Password:     cfg.Password,
+		DB:           cfg.DB,
+		PoolSize:     100,
+		MinIdleConns: 10,
+		PoolTimeout:  30 * time.Second,
 	})
 
 	return &RedisRepo{
