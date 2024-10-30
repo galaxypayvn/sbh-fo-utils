@@ -36,23 +36,17 @@ func (r *repositoryImpl) Get(ctx context.Context, key string) (interface{}, erro
 	retries := 3
 
 	for i := 0; i < retries; i++ {
-		// Execute Redis Get inside the circuit breaker
 		result, err := breaker.Execute(func() (interface{}, error) {
-			mu.Lock() // Protect the map or client if needed
+			mu.Lock() //
 			defer mu.Unlock()
 			return r.client.Get(ctx, r.resolveKey(key)).Result()
 		})
-
 		if err == nil {
 			return result, nil
 		}
-
-		// Check for specific Redis "key not found" error
 		if errors.Is(err, redis.Nil) {
 			return nil, errors.New("key not found: " + key)
 		}
-
-		// If circuit is open or there's another error, apply exponential backoff
 		time.Sleep(time.Duration(i*i) * 100 * time.Millisecond) // Exponential backoff
 	}
 
