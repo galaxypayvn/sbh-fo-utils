@@ -22,6 +22,7 @@ const (
 	HeaderDeviceID        = "x-device-id"
 	HeaderLocale          = "x-locale"
 	HeaderTimezone        = "x-location-timezone"
+	HeaderRealIP          = "x-real-ip"
 )
 
 const defaultLocale = "vi"
@@ -51,6 +52,7 @@ func GetAuthInfoFromToken(req *http.Request) (res *valueobject.Auth, err error) 
 	res.OrgID, _ = GetOrgIDFromHeader(req)
 	res.Locale = GetLocaleFromHeader(req)
 	res.Timezone = GetTimezoneFromHeader(req)
+	res.RealIP = GetRealIPFromHeader(req)
 
 	return res, nil
 }
@@ -117,6 +119,14 @@ func GetUserIDFromHeader(req *http.Request) (uuid.UUID, error) {
 // retrieves the request ID from the request header
 func GetRequestIDFromHeader(req *http.Request) (string, error) {
 	return GetStringFromHeader(req, HeaderRequestID)
+}
+
+func GetRealIPFromHeader(req *http.Request) string {
+	ip, err := GetStringFromHeader(req, HeaderRealIP)
+	if err != nil {
+		return ""
+	}
+	return ip
 }
 
 func GetClientRequestIDFromHeader(req *http.Request) (string, error) {
