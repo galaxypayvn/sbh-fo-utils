@@ -49,6 +49,7 @@ type IRedisRepo interface {
 	GetHashByKey(ctx context.Context, key string, field string) (res string, err error)
 	GetSet(ctx context.Context, key string, newValue any, expire time.Duration) (value string, err error)
 	SetTTL(ctx context.Context, key string, expire time.Duration) error
+	RunRedisScript(ctx context.Context, script, redisKey string) (interface{}, error)
 }
 
 func (r *RedisRepo) GetRepo() *redis.Client {
@@ -150,4 +151,8 @@ func (r *RedisRepo) GetSet(ctx context.Context, key string, value any, expire ti
 
 func (r *RedisRepo) SetTTL(ctx context.Context, key string, expire time.Duration) error {
 	return r.RDB.Expire(ctx, key, expire).Err()
+}
+
+func (r *RedisRepo) RunRedisScript(ctx context.Context, script, redisKey string) (interface{}, error) {
+	return redis.NewScript(script).Run(ctx, r.RDB, []string{redisKey}).Int()
 }
