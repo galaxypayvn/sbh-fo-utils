@@ -17,8 +17,8 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"code.finan.cc/finan-one-be/fo-utils/l/config"
-	"code.finan.cc/finan-one-be/fo-utils/l/sentry"
+	"code.finan.one/finan-one-be/fo-utils/l/config"
+	"code.finan.one/finan-one-be/fo-utils/l/sentry"
 )
 
 const ConsoleEncoderName = "custom_console"

@@ -1,13 +1,14 @@
 package worker
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/broker/mqtt"
-	"code.finan.cc/finan-one-be/fo-utils/broker/rabbitmq"
-	redisqueue "code.finan.cc/finan-one-be/fo-utils/broker/redisqueue"
-	"code.finan.cc/finan-one-be/fo-utils/l"
-	"code.finan.cc/finan-one-be/fo-utils/worker/consumer"
-	"code.finan.cc/finan-one-be/fo-utils/worker/scheduler"
 	"context"
+
+	"code.finan.one/finan-one-be/fo-utils/broker/mqtt"
+	"code.finan.one/finan-one-be/fo-utils/broker/rabbitmq"
+	redisqueue "code.finan.one/finan-one-be/fo-utils/broker/redisqueue"
+	"code.finan.one/finan-one-be/fo-utils/l"
+	"code.finan.one/finan-one-be/fo-utils/worker/consumer"
+	"code.finan.one/finan-one-be/fo-utils/worker/scheduler"
 )
 
 // Builder ...

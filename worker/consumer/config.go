@@ -1,12 +1,13 @@
 package consumer
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/broker/redisqueue"
 	"encoding/json"
 	"fmt"
 
-	"code.finan.cc/finan-one-be/fo-utils/broker/rabbitmq"
-	wokerstatus "code.finan.cc/finan-one-be/fo-utils/worker/status"
+	"code.finan.one/finan-one-be/fo-utils/broker/redisqueue"
+
+	"code.finan.one/finan-one-be/fo-utils/broker/rabbitmq"
+	wokerstatus "code.finan.one/finan-one-be/fo-utils/worker/status"
 )
 
 const (

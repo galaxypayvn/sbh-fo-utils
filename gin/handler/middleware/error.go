@@ -3,8 +3,8 @@ package middleware
 import (
 	"errors"
 
-	messagecode "code.finan.cc/finan-one-be/fo-utils/config/messagecode"
-	"code.finan.cc/finan-one-be/fo-utils/gin/response"
+	messagecode "code.finan.one/finan-one-be/fo-utils/config/messagecode"
+	"code.finan.one/finan-one-be/fo-utils/gin/response"
 
 	"github.com/gin-gonic/gin"
 	"gitlab.com/goxp/cloud0/ginext"

@@ -1,11 +1,12 @@
 package utfunc
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/utils/customtype"
 	"fmt"
-	"github.com/go-playground/validator/v10"
 	"reflect"
 	"strings"
+
+	"code.finan.one/finan-one-be/fo-utils/utils/customtype"
+	"github.com/go-playground/validator/v10"
 )
 
 // CustomValidator is a custom validator that uses the "valid" tag

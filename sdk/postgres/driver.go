@@ -1,13 +1,14 @@
 package postgres
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/l"
 	"fmt"
+	"log"
+	"time"
+
+	"code.finan.one/finan-one-be/fo-utils/l"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
-	"log"
-	"time"
 )
 
 var ll = l.New()

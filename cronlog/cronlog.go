@@ -1,9 +1,10 @@
 package cronlog
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/l"
 	"strings"
 	"time"
+
+	"code.finan.one/finan-one-be/fo-utils/l"
 )
 
 type CronLogger struct {

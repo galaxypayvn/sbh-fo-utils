@@ -7,7 +7,7 @@ import (
 	"syscall"
 	"time"
 
-	"code.finan.cc/finan-one-be/fo-utils/l"
+	"code.finan.one/finan-one-be/fo-utils/l"
 )
 
 // IShutdownHandler ...

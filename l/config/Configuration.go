@@ -1,8 +1,9 @@
 package config
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/l/sentry"
 	"errors"
+
+	"code.finan.one/finan-one-be/fo-utils/l/sentry"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
