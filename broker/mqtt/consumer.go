@@ -6,7 +6,7 @@ import (
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 
-	"code.finan.cc/finan-one-be/fo-utils/l"
+	"code.finan.one/finan-one-be/fo-utils/l"
 )
 
 var ll = l.New()

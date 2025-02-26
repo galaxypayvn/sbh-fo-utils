@@ -5,8 +5,8 @@ import (
 
 	"github.com/asaskevich/EventBus"
 
-	"code.finan.cc/finan-one-be/fo-utils/broker/errors"
-	"code.finan.cc/finan-one-be/fo-utils/l"
+	"code.finan.one/finan-one-be/fo-utils/broker/errors"
+	"code.finan.one/finan-one-be/fo-utils/l"
 )
 
 var ll = l.New()

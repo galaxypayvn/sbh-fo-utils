@@ -1,8 +1,9 @@
 package l
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/l/sentry"
 	"testing"
+
+	"code.finan.one/finan-one-be/fo-utils/l/sentry"
 )
 
 func TestNew(t *testing.T) {

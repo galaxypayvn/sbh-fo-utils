@@ -3,7 +3,7 @@ package utfunc
 import (
 	"time"
 
-	"code.finan.cc/finan-one-be/fo-utils/utils/customtype"
+	"code.finan.one/finan-one-be/fo-utils/utils/customtype"
 	"github.com/jinzhu/copier"
 )
 

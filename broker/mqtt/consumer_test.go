@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"code.finan.cc/finan-one-be/fo-utils/l"
+	"code.finan.one/finan-one-be/fo-utils/l"
 )
 
 func TestNewConsumer(t *testing.T) {

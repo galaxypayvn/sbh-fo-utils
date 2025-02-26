@@ -12,7 +12,7 @@ import (
 
 	"github.com/streadway/amqp"
 
-	"code.finan.cc/finan-one-be/fo-utils/l"
+	"code.finan.one/finan-one-be/fo-utils/l"
 )
 
 // IProducer

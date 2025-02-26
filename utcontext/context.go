@@ -1,11 +1,12 @@
 package utcontext
 
 import (
-	valueobject "code.finan.cc/finan-one-be/fo-utils/model/value-object"
 	"context"
 	"errors"
 
-	"code.finan.cc/finan-one-be/fo-utils/net/uthttp"
+	valueobject "code.finan.one/finan-one-be/fo-utils/model/value-object"
+
+	"code.finan.one/finan-one-be/fo-utils/net/uthttp"
 )
 
 var (

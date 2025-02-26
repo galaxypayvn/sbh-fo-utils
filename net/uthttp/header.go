@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	valueobject "code.finan.cc/finan-one-be/fo-utils/model/value-object"
+	valueobject "code.finan.one/finan-one-be/fo-utils/model/value-object"
 
 	"github.com/gin-gonic/gin"
 

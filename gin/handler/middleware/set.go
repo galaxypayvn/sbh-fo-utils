@@ -3,9 +3,9 @@ package middleware
 import (
 	"context"
 
-	"code.finan.cc/finan-one-be/fo-utils/gin/response"
-	"code.finan.cc/finan-one-be/fo-utils/net/uthttp"
-	"code.finan.cc/finan-one-be/fo-utils/utils/utfunc"
+	"code.finan.one/finan-one-be/fo-utils/gin/response"
+	"code.finan.one/finan-one-be/fo-utils/net/uthttp"
+	"code.finan.one/finan-one-be/fo-utils/utils/utfunc"
 	"github.com/gin-gonic/gin"
 	"gitlab.com/goxp/cloud0/ginext"
 	"gitlab.com/goxp/cloud0/logger"

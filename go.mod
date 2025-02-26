@@ -1,4 +1,4 @@
-module code.finan.cc/finan-one-be/fo-utils
+module code.finan.one/finan-one-be/fo-utils
 
 go 1.22
 

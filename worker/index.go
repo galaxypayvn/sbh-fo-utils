@@ -1,9 +1,9 @@
 package worker
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/worker/consumer"
-	"code.finan.cc/finan-one-be/fo-utils/worker/scheduler"
-	workerstatus "code.finan.cc/finan-one-be/fo-utils/worker/status"
+	"code.finan.one/finan-one-be/fo-utils/worker/consumer"
+	"code.finan.one/finan-one-be/fo-utils/worker/scheduler"
+	workerstatus "code.finan.one/finan-one-be/fo-utils/worker/status"
 )
 
 // HandlerWOption ...

@@ -2,13 +2,14 @@ package scheduler
 
 import (
 	"context"
-	"github.com/robfig/cron/v3"
 	"sync"
 	"time"
 
-	"code.finan.cc/finan-one-be/fo-utils/cronlog"
-	"code.finan.cc/finan-one-be/fo-utils/l"
-	wokerstatus "code.finan.cc/finan-one-be/fo-utils/worker/status"
+	"github.com/robfig/cron/v3"
+
+	"code.finan.one/finan-one-be/fo-utils/cronlog"
+	"code.finan.one/finan-one-be/fo-utils/l"
+	wokerstatus "code.finan.one/finan-one-be/fo-utils/worker/status"
 )
 
 // Scheduler ...

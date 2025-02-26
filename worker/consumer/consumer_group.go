@@ -1,10 +1,10 @@
 package consumer
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/broker/mqtt"
-	"code.finan.cc/finan-one-be/fo-utils/broker/rabbitmq"
-	redisqueue "code.finan.cc/finan-one-be/fo-utils/broker/redisqueue"
-	"code.finan.cc/finan-one-be/fo-utils/l"
+	"code.finan.one/finan-one-be/fo-utils/broker/mqtt"
+	"code.finan.one/finan-one-be/fo-utils/broker/rabbitmq"
+	redisqueue "code.finan.one/finan-one-be/fo-utils/broker/redisqueue"
+	"code.finan.one/finan-one-be/fo-utils/l"
 )
 
 // ConsumerGroup ...

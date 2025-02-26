@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"time"
 
-	"code.finan.cc/finan-one-be/fo-utils/net/uthttp"
-	"code.finan.cc/finan-one-be/fo-utils/utils/utfunc"
+	"code.finan.one/finan-one-be/fo-utils/net/uthttp"
+	"code.finan.one/finan-one-be/fo-utils/utils/utfunc"
 	redis "github.com/redis/go-redis/v9"
 	"gitlab.com/goxp/cloud0/logger"
 )

@@ -1,8 +1,9 @@
 package qr
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/valid"
 	"fmt"
+
+	"code.finan.one/finan-one-be/fo-utils/valid"
 )
 
 /*   ------------ SAMPLE ------------

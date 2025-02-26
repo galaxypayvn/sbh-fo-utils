@@ -1,8 +1,6 @@
 package consumer
 
 import (
-	"code.finan.cc/finan-one-be/fo-utils/broker/mqtt"
-	"code.finan.cc/finan-one-be/fo-utils/broker/redisqueue"
 	"context"
 	"encoding/json"
 	"errors"
@@ -10,13 +8,16 @@ import (
 	"sync"
 	"time"
 
+	"code.finan.one/finan-one-be/fo-utils/broker/mqtt"
+	"code.finan.one/finan-one-be/fo-utils/broker/redisqueue"
+
 	"github.com/gocraft/work"
 	"github.com/streadway/amqp"
 
-	"code.finan.cc/finan-one-be/fo-utils/broker/eventbus"
-	"code.finan.cc/finan-one-be/fo-utils/broker/rabbitmq"
-	"code.finan.cc/finan-one-be/fo-utils/l"
-	workerstatus "code.finan.cc/finan-one-be/fo-utils/worker/status"
+	"code.finan.one/finan-one-be/fo-utils/broker/eventbus"
+	"code.finan.one/finan-one-be/fo-utils/broker/rabbitmq"
+	"code.finan.one/finan-one-be/fo-utils/l"
+	workerstatus "code.finan.one/finan-one-be/fo-utils/worker/status"
 )
 
 var stackSize int = 4 << 10 // 4 KB

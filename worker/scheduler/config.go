@@ -1,7 +1,7 @@
 package scheduler
 
 import (
-	workerstatus "code.finan.cc/finan-one-be/fo-utils/worker/status"
+	workerstatus "code.finan.one/finan-one-be/fo-utils/worker/status"
 )
 
 var (
