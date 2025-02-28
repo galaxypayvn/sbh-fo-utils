@@ -21,7 +21,7 @@ func NormalizeEmail(input string) string {
 		rule    *regexp.Regexp
 		aliasOf string
 	}{
-		"gmail.com":      {rule: rulePlusAndDot},
+		//"gmail.com":      {rule: rulePlusAndDot}, TODO: Current pass for email .
 		"googlemail.com": {rule: rulePlusAndDot, aliasOf: "gmail.com"},
 		"hotmail.com":    {rule: rulePlusOnly},
 		"live.com":       {rule: rulePlusAndDot},
