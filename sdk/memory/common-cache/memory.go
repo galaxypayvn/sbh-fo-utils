@@ -3,10 +3,11 @@ package common_cache
 import (
 	"context"
 	"errors"
-	"github.com/dgraph-io/ristretto"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/dgraph-io/ristretto/v2"
 )
 
 // repositoryImpl ...
@@ -130,15 +131,29 @@ func (r *repositoryImpl) SetString(ctx context.Context, key string, entry string
 
 // SetBulk ...
 func (r *repositoryImpl) SetBulk(ctx context.Context, entries map[string]interface{}) error {
-	var wg sync.WaitGroup
+	var (
+		wg sync.WaitGroup
+		mu sync.Mutex
+		failedKeys []string
+	)
 	for key, entry := range entries {
 		wg.Add(1)
 		go func(k string, e interface{}) {
 			defer wg.Done()
-			r.client.SetWithTTL(r.resolveKey(key), entry, 1, time.Duration(r.defaultTTL)*time.Second)
+			ok := r.client.SetWithTTL(r.resolveKey(k), e, 1, time.Duration(r.defaultTTL)*time.Second)
+			if !ok {
+				mu.Lock()
+				failedKeys = append(failedKeys, k)
+				mu.Unlock()
+			}
 		}(key, entry)
 	}
 	wg.Wait()
+	// Ensure all sets are visible
+	r.client.Wait()
+	if len(failedKeys) > 0 {
+		return errors.New("failed to set keys: " + strings.Join(failedKeys, ", "))
+	}
 	return nil
 }
 
@@ -157,7 +172,7 @@ func (r *repositoryImpl) Reset(ctx context.Context) error {
 // New creates a new instance of repositoryImpl, contains whole common functions
 // for a service
 func New(defaultTTL int, prefixKey, namespace string) (*repositoryImpl, error) {
-	cache, err := ristretto.NewCache[string, interface{}](
+	cache, err := ristretto.NewCache(
 		&ristretto.Config[string, interface{}]{
 			NumCounters:        1000000,
 			MaxCost:            100000,
