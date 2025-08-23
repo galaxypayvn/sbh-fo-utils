@@ -3,8 +3,10 @@ package crypt
 import (
 	"crypto/aes"
 	"crypto/cipher"
+	"crypto/rand"
 	"encoding/hex"
 	"fmt"
+	"io"
 )
 
 func Decrypt(text string, secret []byte) (string, error) {
@@ -34,4 +36,24 @@ func Decrypt(text string, secret []byte) (string, error) {
 	}
 
 	return string(plaintext), nil
+}
+
+func Encrypt(text string, secret []byte) (string, error) {
+	block, err := aes.NewCipher(secret)
+	if err != nil {
+		return "", fmt.Errorf("new cipher block: %w", err)
+	}
+
+	aesGCM, err := cipher.NewGCM(block)
+	if err != nil {
+		return "", fmt.Errorf("new gcm block: %w", err)
+	}
+
+	nonce := make([]byte, aesGCM.NonceSize())
+	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
+		return "", fmt.Errorf("generate nonce: %w", err)
+	}
+
+	ciphertext := aesGCM.Seal(nonce, nonce, []byte(text), nil)
+	return hex.EncodeToString(ciphertext), nil
 }
