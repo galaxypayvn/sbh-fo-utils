@@ -2,6 +2,7 @@ package rabbitmq
 
 import (
 	"context"
+	"crypto/tls"
 	"errors"
 	"fmt"
 	"net"
@@ -62,11 +63,27 @@ func (c *rabbitmqConsumer) GetReceiver(cfg *QueueConfig) (IReceiver, error) {
 func NewRabbitmqConsumer(cfg *Config, ll l.Logger) (IConsumer, error) {
 	cfg.Prepare()
 	ll.S.Infof("Connecting to rabbitmq on %s", cfg.URI)
+
+	// Tạo TLS config nếu có cấu hình TLS
+	tlsConfig, err := cfg.GetTLSConfig()
+	if err != nil {
+		return nil, fmt.Errorf("failed to get TLS config: %s", err)
+	}
+
+	dialFunc := func(network, addr string) (net.Conn, error) {
+		if tlsConfig != nil {
+			// Sử dụng TLS connection
+			return tls.DialWithDialer(&net.Dialer{
+				Timeout: time.Duration(cfg.NetworkTimeoutInSec) * time.Second,
+			}, network, addr, tlsConfig)
+		}
+		// Kết nối non-TLS thông thường
+		return net.DialTimeout(network, addr, time.Duration(cfg.NetworkTimeoutInSec)*time.Second)
+	}
+
 	conn, err := amqp.DialConfig(cfg.URI, amqp.Config{
 		Vhost: cfg.VHost,
-		Dial: func(network, addr string) (net.Conn, error) {
-			return net.DialTimeout(network, addr, time.Duration(cfg.NetworkTimeoutInSec)*time.Second)
-		},
+		Dial:  dialFunc,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("dial: %s", err)
