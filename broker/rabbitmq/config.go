@@ -101,22 +101,26 @@ func (c *Config) Prepare() {
 }
 
 // GetTLSConfig tạo TLS config từ CA certificate file (self-signed)
-// Tự động phát hiện TLS nếu URI bắt đầu với amqps://
-// Nếu SkipCAVerification = true, sẽ bỏ qua xác thực CA
+// Tự động phát hiện TLS nếu:
+// 1. URI bắt đầu với amqps:// (auto-detect)
+// 2. Hoặc có explicit config: CACertFile != "" hoặc SkipCAVerification == true
 // Nếu URI là amqps:// nhưng không có CA file, tự động skip verification để tránh lỗi với self-signed CA
 func (c *Config) GetTLSConfig() (*tls.Config, error) {
 	// Kiểm tra nếu URI sử dụng amqps:// (TLS)
-	useTLS := strings.HasPrefix(strings.ToLower(c.URI), "amqps://")
+	useTLSFromURI := strings.HasPrefix(strings.ToLower(c.URI), "amqps://")
+	
+	// Kiểm tra nếu có explicit TLS config
+	hasExplicitTLSConfig := c.CACertFile != "" || c.SkipCAVerification
 
-	// Chỉ sử dụng TLS nếu URI là amqps:// hoặc có cấu hình TLS explicit
-	if !useTLS && c.CACertFile == "" && !c.SkipCAVerification {
+	// Chỉ sử dụng TLS nếu URI là amqps:// hoặc có explicit TLS config
+	if !useTLSFromURI && !hasExplicitTLSConfig {
 		return nil, nil // không sử dụng TLS
 	}
 
 	// Nếu URI là amqps:// nhưng không có CA file và không explicit set SkipCAVerification,
 	// tự động skip verification để tránh lỗi với self-signed CA
 	skipVerify := c.SkipCAVerification
-	if useTLS && c.CACertFile == "" && !c.SkipCAVerification {
+	if useTLSFromURI && c.CACertFile == "" && !c.SkipCAVerification {
 		// Tự động skip nếu dùng amqps:// mà không có CA file (giả định là self-signed)
 		skipVerify = true
 	}
