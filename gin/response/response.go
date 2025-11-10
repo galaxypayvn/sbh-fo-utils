@@ -2,6 +2,7 @@ package response
 
 import (
 	"errors"
+	"fmt"
 
 	messagecode "code.finan.one/finan-one-be/fo-utils/config/messagecode"
 	"code.finan.one/finan-one-be/fo-utils/net/uthttp"
@@ -57,7 +58,7 @@ func (h *Handler) NewDataResponse(c *gin.Context, messagecode int, data any, par
 func (h *Handler) NewResponse(c *gin.Context, messageCode int, data any, meta map[string]any, params ...any) *ginext.Response {
 	locale := uthttp.GetLocaleFromHeader(c.Request)
 	messageContent := h.messClient.GetMessage(locale, messageCode)
-	return h.newRawResponse(c, messageCode, messageContent, data, meta)
+	return h.newRawResponse(c, messageCode, messageContent, data, meta, params...)
 }
 
 func (h *Handler) NewRawResponse(c *gin.Context, messageCode int, messageContent string, data any, meta map[string]any, params ...any) *ginext.Response {
@@ -70,7 +71,7 @@ func (h *Handler) newRawResponse(c *gin.Context, messageCode int, messageContent
 	locale := uthttp.GetLocaleFromHeader(c.Request)
 	res := &Response[any]{
 		Message: Message{
-			Content: messageContent,
+			Content: fmt.Sprintf(messageContent, params...),
 			Params:  params,
 		},
 		Code:      messageCode,
