@@ -57,14 +57,11 @@ func SetRequestIDToCTX(h *response.Handler) gin.HandlerFunc {
 func SetUserIDToCTX(h *response.Handler) gin.HandlerFunc {
 	return ginext.WrapHandler(
 		func(r *ginext.Request) (res *ginext.Response, err error) {
-			log := logger.WithCtx(r.Context(), utfunc.GetCurrentCaller(h, 0))
-
 			c := r.GinCtx
 			request := c.Request
 			ctx := request.Context()
 			userID, err := uthttp.GetUserIDFromHeader(request)
 			if err != nil {
-				log.WithError(err).Warn("user id not found")
 				c.Next()
 				return nil, nil
 			}
