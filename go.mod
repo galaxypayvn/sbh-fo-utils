@@ -21,6 +21,7 @@ require (
 	github.com/k0kubun/pp v3.0.1+incompatible
 	github.com/redis/go-redis/v9 v9.5.1
 	github.com/robfig/cron/v3 v3.0.1
+	github.com/sirupsen/logrus v1.9.1
 	github.com/sony/gobreaker v1.0.0
 	github.com/streadway/amqp v1.1.0
 	github.com/stretchr/testify v1.10.0
@@ -90,7 +91,6 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.9 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/robfig/cron v1.2.0 // indirect
-	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
