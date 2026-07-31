@@ -258,6 +258,7 @@ func (c *Client) getStrapiMessageCodes(ctx context.Context, messageGroup int) ([
 		req := uthttp.HTTPRequest{
 			Method: http.MethodGet,
 			URL:    uri.String(),
+			Silent: true,
 			Header: map[string]string{
 				"Authorization": fmt.Sprintf("Bearer %s", c.cfg.StrapiToken),
 			},
