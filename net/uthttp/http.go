@@ -34,6 +34,7 @@ type HTTPRequest struct {
 	Header map[string]string // HTTP headers
 	Body   interface{}       // Body of the request
 	LogTag string            // Tag to use for logging
+	Silent bool              // If true, skip info-level request/response logs
 }
 
 type HTTPResponse[T any] struct {
@@ -120,7 +121,9 @@ func SendHTTPRequest[T any](ctx context.Context, client *http.Client, httpReq HT
 				return res, err
 			}
 
-			log.Infof("api: %v header: %v requestData: %v", httpReq.URL, httpReq.Header, string(bodyBytes))
+			if !httpReq.Silent {
+				log.Infof("api: %v header: %v requestData: %v", httpReq.URL, httpReq.Header, string(bodyBytes))
+			}
 			reqReader = bytes.NewReader(bodyBytes)
 		}
 	}
@@ -182,10 +185,12 @@ func SendHTTPRequest[T any](ctx context.Context, client *http.Client, httpReq HT
 		}
 	}
 
-	if resp.StatusCode != 200 && resp.StatusCode != 201 && resp.StatusCode != http.StatusAccepted {
-		log.Infof("api: %v statusCode: %v responseData: %v", httpReq.URL, resp.StatusCode, buf.String())
-	} else {
-		log.Infof("api: %v statusCode: %v responseData: %+v", httpReq.URL, resp.StatusCode, body)
+	if !httpReq.Silent {
+		if resp.StatusCode != 200 && resp.StatusCode != 201 && resp.StatusCode != http.StatusAccepted {
+			log.Infof("api: %v statusCode: %v responseData: %v", httpReq.URL, resp.StatusCode, buf.String())
+		} else {
+			log.Infof("api: %v statusCode: %v responseData: %+v", httpReq.URL, resp.StatusCode, body)
+		}
 	}
 
 	res.Body = body
