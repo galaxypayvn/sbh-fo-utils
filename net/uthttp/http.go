@@ -128,8 +128,10 @@ func SendHTTPRequest[T any](ctx context.Context, client *http.Client, httpReq HT
 		}
 	}
 
-	// Attach ctx so outbound instrumentation (e.g. otelhttp) can propagate W3C traceparent.
-	req, err := http.NewRequestWithContext(ctx, httpReq.Method, httpReq.URL, reqReader)
+	// Attach caller values (trace span, request id) so otelhttp can parent the client span,
+	// but drop cancel/deadline. Matching historical NewRequest(): a disconnected HTTP
+	// client must not abort Intelisys/Pay/S3. http.Client.Timeout still applies.
+	req, err := http.NewRequestWithContext(context.WithoutCancel(ctx), httpReq.Method, httpReq.URL, reqReader)
 	if err != nil {
 		log.WithError(err).Error("error creating HTTP request")
 		return res, err
