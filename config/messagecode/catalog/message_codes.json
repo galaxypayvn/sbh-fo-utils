@@ -922,5 +922,271 @@
     "message": "Không thể chỉnh sửa cấu hình của định mức Dùng 1 lần.",
     "http_code": 400,
     "locale": "vi"
+  },
+  {
+    "id": 500,
+    "code": 224100,
+    "message": "The flight has already departed",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 501,
+    "code": 224100,
+    "message": "Chuyến bay đã khởi hành",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 502,
+    "code": 224101,
+    "message": "Unable to determine departure time",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 503,
+    "code": 224101,
+    "message": "Không xác định được giờ khởi hành",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 504,
+    "code": 224102,
+    "message": "Please purchase checked baggage before buying insurance",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 505,
+    "code": 224102,
+    "message": "Vui lòng mua hành lý ký gửi trước khi mua bảo hiểm",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 506,
+    "code": 224103,
+    "message": "Passenger already purchased %s insurance for this flight",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 507,
+    "code": 224103,
+    "message": "Hành khách đã mua bảo hiểm %s cho chuyến bay này",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 508,
+    "code": 224104,
+    "message": "VIP insurance requires at least 1 bag tag",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 509,
+    "code": 224104,
+    "message": "Bảo hiểm VIP yêu cầu ít nhất 1 thẻ hành lý",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 510,
+    "code": 224105,
+    "message": "VIP insurance requires the passenger to be checked in",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 511,
+    "code": 224105,
+    "message": "Bảo hiểm VIP yêu cầu hành khách đã làm thủ tục check-in",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 512,
+    "code": 224106,
+    "message": "VIP insurance is not available at this airport",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 513,
+    "code": 224106,
+    "message": "Bảo hiểm VIP không khả dụng tại sân bay này",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 514,
+    "code": 224107,
+    "message": "Bag tag %s does not exist or does not belong to this passenger",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 515,
+    "code": 224107,
+    "message": "Thẻ hành lý %s không tồn tại hoặc không thuộc hành khách này",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 516,
+    "code": 224108,
+    "message": "Bag tag %s already has VIP insurance",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 517,
+    "code": 224108,
+    "message": "Thẻ hành lý %s đã có bảo hiểm VIP",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 518,
+    "code": 224109,
+    "message": "No journeys found in reservation",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 519,
+    "code": 224109,
+    "message": "Không tìm thấy hành trình trong đặt chỗ",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 520,
+    "code": 224110,
+    "message": "No segments found in journey",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 521,
+    "code": 224110,
+    "message": "Không tìm thấy chặng bay trong hành trình",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 522,
+    "code": 224111,
+    "message": "No departures found",
+    "http_code": 404,
+    "locale": "en"
+  },
+  {
+    "id": 523,
+    "code": 224111,
+    "message": "Không tìm thấy chuyến khởi hành",
+    "http_code": 404,
+    "locale": "vi"
+  },
+  {
+    "id": 524,
+    "code": 224112,
+    "message": "Passenger not found in departure",
+    "http_code": 404,
+    "locale": "en"
+  },
+  {
+    "id": 525,
+    "code": 224112,
+    "message": "Không tìm thấy hành khách trong chuyến khởi hành",
+    "http_code": 404,
+    "locale": "vi"
+  },
+  {
+    "id": 526,
+    "code": 224113,
+    "message": "A baggage package must be purchased before buying excess baggage",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 527,
+    "code": 224113,
+    "message": "Cần mua gói hành lý trước khi mua hành lý ký gửi vượt mức",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 528,
+    "code": 224114,
+    "message": "Passenger already purchased baggage as an add-on and cannot buy another surcharge package",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 529,
+    "code": 224114,
+    "message": "Hành khách đã mua hành lý add-on nên không thể mua thêm gói surcharge",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 530,
+    "code": 224115,
+    "message": "Passenger already has a baggage package and cannot buy another package",
+    "http_code": 400,
+    "locale": "en"
+  },
+  {
+    "id": 531,
+    "code": 224115,
+    "message": "Hành khách đã có gói hành lý và không thể mua thêm gói khác",
+    "http_code": 400,
+    "locale": "vi"
+  },
+  {
+    "id": 532,
+    "code": 224116,
+    "message": "Reservation not found",
+    "http_code": 404,
+    "locale": "en"
+  },
+  {
+    "id": 533,
+    "code": 224116,
+    "message": "Không tìm thấy đặt chỗ",
+    "http_code": 404,
+    "locale": "vi"
+  },
+  {
+    "id": 534,
+    "code": 224117,
+    "message": "Passenger not found",
+    "http_code": 404,
+    "locale": "en"
+  },
+  {
+    "id": 535,
+    "code": 224117,
+    "message": "Không tìm thấy hành khách",
+    "http_code": 404,
+    "locale": "vi"
+  },
+  {
+    "id": 536,
+    "code": 224118,
+    "message": "Journey not found",
+    "http_code": 404,
+    "locale": "en"
+  },
+  {
+    "id": 537,
+    "code": 224118,
+    "message": "Không tìm thấy hành trình",
+    "http_code": 404,
+    "locale": "vi"
   }
 ]
